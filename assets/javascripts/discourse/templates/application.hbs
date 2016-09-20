@@ -1,0 +1,40 @@
+
+{{site-header canSignUp=canSignUp
+              showCreateAccount="showCreateAccount"
+              showLogin="showLogin"
+              showKeyboard="showKeyboardShortcutsHelp"
+              toggleMobileView="toggleMobileView"
+              toggleAnonymous="toggleAnonymous"
+              logout="logout"
+              showSearchHelp="showSearchHelp"}}
+
+<div id="main-outlet" class="wrap">
+    <aside class="left-side-bar">
+    {{plugin-outlet "envato-sidebar"}}
+    </aside>
+     <section class="main-outlet-wrap">
+  <div class="container">
+    {{#if showTop}}
+      {{custom-html "top"}}
+    {{/if}}
+    {{global-notice}}
+    {{create-topics-notice}}
+  </div>
+  {{outlet}}
+  {{render "user-card"}}
+  </section>
+
+    <aside class="right-side-bar">
+    {{plugin-outlet "right-sidebar"}}
+    </aside>
+</div>
+
+{{plugin-outlet "above-footer"}}
+{{#if showFooter}}
+  {{custom-html "footer"}}
+{{/if}}
+{{plugin-outlet "below-footer"}}
+
+{{render "modal"}}
+{{render "topic-entrance"}}
+{{render "composer"}}

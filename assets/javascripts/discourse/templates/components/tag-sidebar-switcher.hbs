@@ -1,0 +1,9 @@
+{{#if tags}}
+<section {{bind-attr class=":sidebar-tag-selector"}}>
+    {{#each t in tags}}
+      <div class='cat'>
+        {{tag-sidebar-link tagId=t category=thisCategory}}
+      </div>
+    {{/each}}
+</section>
+{{/if}}

@@ -1,0 +1,61 @@
+
+<td class="post-authors">
+    {{~#if topic.creator ~}}
+    <div class='post-authors-creator'>
+        <a href="{{topic.lastPostUr}}" data-user-card="{{topic.creator.username}}">{{avatar topic.creator usernamePath="username" imageSize="80"}}</a>
+    </div>
+    {{~/if ~}}
+    {{~#if topic.replyCount ~}}
+    <div class='post-authors-last'>
+        <a href="{{topic.lastPostUr}}" data-user-card="{{topic.last_poster_username}}">{{avatar topic.lastPoster usernamePath="username" imageSize="40"}}</a>
+    </div>
+    {{~/if ~}}
+
+</td>
+
+<td class='main-link clearfix'>
+  {{raw "topic-status" topic=topic}}
+  {{topic-link topic}}
+
+  {{raw "list/topic-excerpt" topic=model}}
+  <div class='creator'>
+
+  {{~#if topic.creator ~}}
+    <a href="{{topic.url}}" class='started-by-link'>started</a> by <span class='started-by-user' data-user-card="{{topic.creator.username}}">{{topic.creator.username}}</span> <!-- <a href={{topic.url}}>{{format-date topic.createdAt format="tiny"}}</a> -->
+  {{~/if ~}}
+  {{~#if topic.replyCount ~}}
+    <br/> <a href="{{topic.lastPostUr}}" class='latest-by-link'>latest reply</a> by <span class='latest-by-user' data-user-card="{{topic.last_poster_username}}">{{topic.last_poster_username}}</span>
+  {{~/if ~}}
+  <br/> {{category-link topic.category}}
+
+   {{raw "list/action-list" topic=topic postNumbers=topic.liked_post_numbers className="likes" icon="heart"}}
+   </div>
+</td>
+
+
+{{#if controller.showLikes}}
+<td class="num likes">
+  {{number topic.like_count}} <i class='fa fa-heart'></i>
+</td>
+{{/if}}
+
+{{#if controller.showOpLikes}}
+<td class="num likes">
+  {{number topic.op_like_count}} <i class='fa fa-heart'></i>
+</td>
+{{/if}}
+
+<td class="last-post">
+    <a href="{{topic.lastPostUrl}}" class='last-post-time'>
+        {{format-date topic.bumpedAt leaveAgo="true"}}
+    </a>
+    <div class='reply-count reply-count-{{topic.replyCount}}'>
+        {{#if controller.showTopicPostBadges}}
+            {{raw "topic-post-badges" unread=topic.unread newPosts=topic.displayNewPosts unseen=topic.unseen url=topic.lastUnreadUrl}}
+        {{/if}}
+        <a href class='posts-map badge-posts {{view.likesHeat}}'>{{number topic.replyCount noTitle="true"}}</a>
+        replies
+    </div>
+
+
+</td>

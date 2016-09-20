@@ -1,0 +1,14 @@
+{{#if subcategories}}
+<section class="sidebar-sub-category-dropdown-menu chooser">
+    {{#each subcategories as |sc|}}
+        <div class='sub-cat'>
+            <div class='cat-link'>
+                {{subcategory-sidebar-link parentCategory=parentCategory category=sc}}
+            </div>
+            <div class='cat-tags'>
+                {{tag-sidebar-switcher category=sc firstCategory=firstCategory secondCategory=secondCategory tagId=tagId}}
+            </div>
+        </div>
+    {{/each}}
+</section>
+{{/if}}
